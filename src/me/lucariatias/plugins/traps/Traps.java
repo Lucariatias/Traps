@@ -18,20 +18,6 @@ public class Traps extends JavaPlugin {
 	
 	public void onEnable() {
 		this.getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
-		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() { public void run() {
-			for (World world : Bukkit.getServer().getWorlds())
-			for (Entity entity : world.getEntities()) {
-				if (entity instanceof LivingEntity && !(entity instanceof Player)) {
-					Block block = entity.getLocation().getBlock().getRelative(BlockFace.DOWN);
-				    if (((Traps) Bukkit.getServer().getPluginManager().getPlugin("Traps")).traps.get(block) != null) {
-				    	if ((((Traps) Bukkit.getServer().getPluginManager().getPlugin("Traps")).traps.get(block).active)) {
-				    		((Traps) Bukkit.getServer().getPluginManager().getPlugin("Traps")).traps.get(block).trap((LivingEntity) entity);
-				    	}
-				    }
-				}
-			}
-		} }, 20, 20);
 	}
 
 }
